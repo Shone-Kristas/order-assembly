@@ -22,6 +22,7 @@ def select_racks(order_data_list):
     with sqlite3.connect('db/mydb.db') as conn:
         cursor = conn.cursor()
 
+        orders_set = set()
         result_dict = {}
         for item in order_data_list:
             for gitems in item:
@@ -37,6 +38,7 @@ def select_racks(order_data_list):
                         WHERE products.name = ?
                     ''', (product_name,))
                 grows = cursor.fetchall()
+                orders_set.add(gitems[2])
 
                 if grows:
                     main_rack_name = grows[0][0]
@@ -49,12 +51,12 @@ def select_racks(order_data_list):
                             result_dict[main_rack_name].append(f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт\nосновной стеллаж: {row[1]}')
                         else:
                             result_dict[main_rack_name].append(f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт')
-        return result_data(result_dict)
+        return result_data(result_dict, orders_set)
 
 
-def result_data(result_dict):
+def result_data(result_dict, orders):
     # Вывод результатов
-    print(f'Страница сборки заказов {main_rack}')
+    print('Страница сборки заказов:', ', '.join(map(str, sorted(orders))))
     for main_rack, items in result_dict.items():
         print(f'===Стеллаж {main_rack}')
         for item in items:
