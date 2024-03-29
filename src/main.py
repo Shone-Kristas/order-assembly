@@ -41,16 +41,21 @@ def select_racks(order_data_list):
                 orders_set.add(gitems[2])
 
                 if grows:
-                    main_rack_name = grows[0][0]
+                    if grows[0][0] == None:
+                        main_rack_name = grows[0][2]
+                    else:
+                        main_rack_name = grows[0][0]
+                    print(main_rack_name, 'main_rack_namemain_rack_namemain_rack_namemain_rack_namemain_rack_namemain_rack_namemain_rack_name')
                     if main_rack_name not in result_dict:
                         result_dict[main_rack_name] = []
                     for row in grows:
                         if row[1] and row[2]:  # Если есть и основной и дополнительный стеллаж
-                            result_dict[main_rack_name].append(f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт\nдоп стеллаж: {row[1]}, {row[2]}')
+                            result_dict[main_rack_name].append(f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт\nдоп стеллаж: {row[1]}')
                         elif row[1]:  # Если есть только основной стеллаж
                             result_dict[main_rack_name].append(f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт\nосновной стеллаж: {row[1]}')
                         else:
                             result_dict[main_rack_name].append(f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт')
+        print(result_dict)
         return result_data(result_dict, orders_set)
 
 
