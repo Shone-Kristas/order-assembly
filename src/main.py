@@ -45,7 +45,6 @@ def select_racks(order_data_list):
                         main_rack_name = grows[0][2]
                     else:
                         main_rack_name = grows[0][0]
-                    print(main_rack_name, 'main_rack_namemain_rack_namemain_rack_namemain_rack_namemain_rack_namemain_rack_namemain_rack_name')
                     if main_rack_name not in result_dict:
                         result_dict[main_rack_name] = []
                     for row in grows:
@@ -55,7 +54,6 @@ def select_racks(order_data_list):
                             result_dict[main_rack_name].append(f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт\nосновной стеллаж: {row[1]}')
                         else:
                             result_dict[main_rack_name].append(f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт')
-        print(result_dict)
         return result_data(result_dict, orders_set)
 
 
