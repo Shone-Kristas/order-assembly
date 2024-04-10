@@ -57,7 +57,7 @@ git clone https://github.com/Shone-Kristas/order-assembly.git
 
 ## Запуск приложения:
 
-1. Из корневой директории проекта "src" выполните команду:
+Из корневой директории проекта "src" выполните команду:
 ```bash
 python main.py {value}
 ```
