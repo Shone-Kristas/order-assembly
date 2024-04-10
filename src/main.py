@@ -49,11 +49,22 @@ def select_racks(order_data_list):
                         result_dict[main_rack_name] = []
                     for row in grows:
                         if row[1] and row[2]:  # Если есть и основной и дополнительный стеллаж
-                            result_dict[main_rack_name].append(f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт\nдоп стеллаж: {row[1]}')
+                            if [f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт'] in result_dict[main_rack_name]:
+                                result_dict[main_rack_name].append(
+                                    f'доп стеллаж: {row[1]}')
+                                print(result_dict)
+                            else:
+                                result_dict[main_rack_name].append(
+                                    f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт')
+                                result_dict[main_rack_name].append(
+                                    f'доп стеллаж: {row[1]}')
                         elif row[1]:  # Если есть только основной стеллаж
-                            result_dict[main_rack_name].append(f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт\nосновной стеллаж: {row[1]}')
+                            result_dict[main_rack_name].append(
+                                f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт\nосновной стеллаж: {row[1]}')
                         else:
-                            result_dict[main_rack_name].append(f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт')
+                            result_dict[main_rack_name].append(
+                                f'{product_name} (id={product_id})\nзаказ {order_number}, {order_amount} шт')
+
         return result_data(result_dict, orders_set)
 
 
