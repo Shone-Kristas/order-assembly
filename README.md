@@ -71,4 +71,4 @@ python main.py {value}
 ## Автор
 [Nickolay](https://github.com/Shone-Kristas)
 
-[⬆️В начало](#проект-страница-сборки-заказов)
+[⬆️В начало](#Страница-сборки-заказов)
